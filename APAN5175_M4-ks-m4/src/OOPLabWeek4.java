@@ -46,8 +46,7 @@ public class OOPLabWeek4 {
  */
 class Student {
 
-    // PART 1 will change access control for studentId
-    String studentId;
+    private String studentId;
 
     // Good: already private
     private String name;
@@ -64,7 +63,7 @@ class Student {
     // Constructor
     public Student(String studentId, String name, double gpa) {
         // Part 1: validate/set studentId via setter
-        this.studentId = studentId;
+        setStudentId(studentId);
         this.name = name;
         this.gpa = gpa;
         // Part 5: increment counter
@@ -81,7 +80,12 @@ class Student {
     }
 
     public void setStudentId(String studentId) {
-        // Part 1: validate format like S#### (S followed by 4 digits)
+        if (studentId == null || !studentId.matches("S[0-9]{4}")) {
+            throw new IllegalArgumentException(
+                "Student ID must be S followed by four digits."
+            );
+        }
+
         this.studentId = studentId;
     }
 
